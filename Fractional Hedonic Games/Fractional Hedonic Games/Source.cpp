@@ -58,18 +58,18 @@ std::vector<std::vector<int>> combinationUtil(std::vector<std::vector<int>> A, s
 
 int main()
 {
-	int n = 5;
+	int n = 9;
 	// Size of the blocking coalition
-	int q = 4;
+	int q = 8;
 	// q-size core stable
 
-	bool fixed_value = false;
+	bool fixed_value = true;
 		// If this value is true, you can check the feasibility for a fixed value of the improvement factor (c)
 		// If this value is false, the solver will optimize towards the maximum value of the improvement factor
 			// NOTE: this optimizatino problem is bilinear, and might have troubles proving optimality.
 			// Each objective value that is found is, nevertheless, a lower bound on the maximum value
 	
-	double c = 1.2;
+	double c = 1.11;
 	// c-core stable
 
 	std::vector<int> list(n);
