@@ -3,14 +3,16 @@
 // The difference for Modified Fractional Hedonic Games is that the utility of an agent
 // is only divided by the number of agents in the coalition, EXCLUDING HIMSELF
 
-void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c) {
+void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector) {
 	for (int l = 0; l < n_vector.size(); l++) {
 		int n = n_vector[l];
 		// Size of the blocking coalition
 		int q = q_vector[l];
 		// q-size core stable
 
-		printf("\n\n\n***************************************\n\tn = %i \t q=%i\n***************************************\n\n\n", n, q);
+		double c = c_vector[l];
+
+		printf("\n\n\n***************************************\n\tn = %i \t q=%i \t c=%.4f\n***************************************\n\n\n", n, q, c);
 
 
 		std::vector<int> list(n);

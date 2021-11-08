@@ -9,7 +9,7 @@ std::vector<std::vector<int>> combinationUtil(std::vector<std::vector<int>> A, s
 
 
 
-void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c);
+void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector);
 	// 'n_vector' is a vector containing the number of agents
 	// 'q_vector' is a vector containing how large should the size core stability should be?
 
@@ -20,5 +20,5 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 
 	// If 'fixed_value' is true, value for improvement core stability?
 
-void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c);
-void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c);
+void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector);
+void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector);
