@@ -1,6 +1,6 @@
 \ Model (null)_copy
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-Maximize
+Minimize
  
 Subject To
  R0: x_0_1 - v_0 + 1000 y_0 <= 1000
@@ -27,11 +27,11 @@ Subject To
  R27: - x_0_3 + x_3_0 = 0
  R28: - x_1_3 + x_3_1 = 0
  R29: - x_2_3 + x_3_2 = 0
- R30: v_0 = 100
- R31: x_0_1 + x_0_2 + x_0_3 - 3.03 v_0 >= 0
- R32: x_1_0 + x_1_2 + x_1_3 - 3.03 v_1 >= 0
- R33: x_2_0 + x_2_1 + x_2_3 - 3.03 v_2 >= 0
- R34: x_3_0 + x_3_1 + x_3_2 - 3.03 v_3 >= 0
+ R30: v_0 = 1
+ R31: x_0_1 + x_0_2 + x_0_3 - 5.03 v_0 >= 0
+ R32: x_1_0 + x_1_2 + x_1_3 - 5.03 v_1 >= 0
+ R33: x_2_0 + x_2_1 + x_2_3 - 5.03 v_2 >= 0
+ R34: x_3_0 + x_3_1 + x_3_2 - 5.03 v_3 >= 0
 Bounds
  x_0_1 free
  x_0_2 free

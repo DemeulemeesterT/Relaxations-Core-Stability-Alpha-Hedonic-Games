@@ -21,3 +21,4 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 	// If 'fixed_value' is true, value for improvement core stability?
 
 void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c);
+void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, double c);
