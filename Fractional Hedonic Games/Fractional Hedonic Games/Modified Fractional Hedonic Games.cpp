@@ -40,7 +40,7 @@ void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int
 				if (i != j) {
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
-					X[i][j] = model.addVar(0.0, 1.0, 0.0, GRB_CONTINUOUS, name_x);
+					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int
 			//model.addConstr(V[i] >= 0.01);
 			//model.addConstr(V[i] == 1);
 		}
-		model.addConstr(V[0] == 1);
+		model.addConstr(V[0] == 100);
 
 
 		if (fixed_value == true) {
