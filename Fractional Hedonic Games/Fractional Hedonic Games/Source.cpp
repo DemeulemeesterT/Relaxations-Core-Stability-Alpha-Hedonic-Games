@@ -58,8 +58,8 @@ std::vector<std::vector<int>> combinationUtil(std::vector<std::vector<int>> A, s
 
 int main()
 {
-	std::vector<int> n_vector{8,12,13,14,15,12,13,14,15};
-	std::vector<int> q_vector{6,11,12,13,14,10,11,12,13 };
+	std::vector<int> n_vector{12};
+	std::vector<int> q_vector{9};
 
 	for (int l = 0; l < n_vector.size(); l++) {
 		int n = n_vector[l];
@@ -69,13 +69,13 @@ int main()
 
 		printf("\n\n\n***************************************\n\tn = %i \t q=%i\n***************************************\n\n\n", n, q);
 
-		bool fixed_value = false;
+		bool fixed_value = true;
 		// If this value is true, you can check the feasibility for a fixed value of the improvement factor (c)
 		// If this value is false, the solver will optimize towards the maximum value of the improvement factor
 			// NOTE: this optimizatino problem is bilinear, and might have troubles proving optimality.
 			// Each objective value that is found is, nevertheless, a lower bound on the maximum value
 
-		double c = 1.125;
+		double c = 1.0606;
 		// c-improvement core stable
 
 		std::vector<int> list(n);
