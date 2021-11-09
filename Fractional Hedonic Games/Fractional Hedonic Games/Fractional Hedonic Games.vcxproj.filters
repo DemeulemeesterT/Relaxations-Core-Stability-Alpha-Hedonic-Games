@@ -33,6 +33,9 @@
     <ClCompile Include="Additively Separable Hedonic Games.cpp">
       <Filter>Source Files\Run Configurations</Filter>
     </ClCompile>
+    <ClCompile Include="Friends and Enemies.cpp">
+      <Filter>Source Files\Run Configurations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Run_Configurations.h">

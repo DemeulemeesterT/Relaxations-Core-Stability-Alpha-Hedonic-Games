@@ -3,7 +3,7 @@
 // The difference for Modified Fractional Hedonic Games is that the utility of an agent
 // is only divided by the number of agents in the coalition, EXCLUDING HIMSELF
 
-void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector) {
+void friends_and_enemies(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector) {
 	for (int l = 0; l < n_vector.size(); l++) {
 		int n = n_vector[l];
 		// Size of the blocking coalition
@@ -23,7 +23,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 		GRBEnv* env = NULL;
 
 		env = new GRBEnv();
-		env->set(GRB_StringParam_LogFile, "HedonicGames_ASHG.log");
+		env->set(GRB_StringParam_LogFile, "HedonicGames_FriendsEnemies.log");
 		GRBModel model = GRBModel(*env);
 		model.set(GRB_IntParam_PoolSolutions, 10); // Limit the number of solutions that will be stored.
 		model.set(GRB_DoubleParam_MIPGap, 0.000001);
@@ -41,7 +41,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				if (i != j) {
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
-					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
+					X[i][j] = model.addVar(0.0, 1.0, 0.0, GRB_BINARY, name_x);
 				}
 			}
 		}
@@ -50,7 +50,8 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 		for (int i = 0; i < n; i++) {
 			char name_v[13];
 			sprintf_s(name_v, "v_%i", i);
-			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_v);
+			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_v);
+				// Cannot be non-integer because weights either 1 or -1
 		}
 
 		// Now we want to enforce that for each subset of size q or smaller, 
@@ -83,7 +84,8 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 
 		// Big number M, should be upper bounded by the sum of the valuations (because of 2-size core stability)
 		// Fixing one of the valuations to 1, a quick guess is that none of the valuations is larger than 4
-		int M = 4*q;
+		int M = 2*n+1;
+		//M = 100;
 		int counter = 0;
 
 		//printf("\n\n\n\n\n\n\nATTENTION, NOT ALL CONSTRAINTS FOR THE SUBSETS ADDED \n\n\n\n\n\n\n");
@@ -94,7 +96,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				GRBLinExpr con;
 				for (int l = 0; l < A[i].size(); l++) {
 					if (A[i][l] != A[i][k]) {
-						con += X[A[i][k]][A[i][l]];
+						con += (-1 + 2* X[A[i][k]][A[i][l]]);
 					}
 				}
 				con -= V[A[i][k]];
@@ -121,7 +123,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 			//model.addConstr(V[i] >= 0.01);
 			//model.addConstr(V[i] == 1);
 		}
-		model.addConstr(V[0] == 1);
+		//model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == 1);
 		//model.addConstr(V[2] == 1);
 		//model.addConstr(V[3] == 1);
@@ -134,7 +136,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				GRBLinExpr con;
 				for (int k = 0; k < n; k++) {
 					if (i != k) {
-						con += X[i][k];
+						con += (-1 + 2 * X[i][k]);
 					}
 				}
 				model.addConstr(con >= c * V[i]);
@@ -147,7 +149,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				GRBLinExpr con;
 				for (int k = 0; k < n; k++) {
 					if (i != k) {
-						con += X[i][k];
+						con += (-1 + 2 * X[i][k]);
 					}
 				}
 				model.addQConstr(con >= ALPHA * V[i]);
@@ -202,7 +204,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 			printf("\n\n X values:\n");
 			for (int i = 0; i < n; i++) {
 				for (int j = i + 1; j < n; j++) {
-					printf("X[%i][%i] = %.6f\n", i, j, X_val[i][j]);
+					printf("X[%i][%i] = %.0f\n", i, j, -1+2*X_val[i][j]);
 				}
 			}
 
@@ -233,9 +235,6 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 					}
 				}
 			}
-			printf("Number of X-values equal to 0: %i\n", sum_0 / 2);
-			printf("Number of X-values equal to 1: %i\n", sum_1 / 2);
-			printf("Number of X-values equal to 2: %i\n", sum_2 / 2);
 		}
 		delete[] Y;
 		delete[] V;

@@ -148,6 +148,7 @@
     <ClCompile Include="Additively Separable Hedonic Games.cpp" />
     <ClCompile Include="Find All Combinations.cpp" />
     <ClCompile Include="Fractional Hedonic Games.cpp" />
+    <ClCompile Include="Friends and Enemies.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Modified Fractional Hedonic Games.cpp" />
   </ItemGroup>
