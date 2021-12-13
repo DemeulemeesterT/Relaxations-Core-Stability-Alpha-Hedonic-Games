@@ -114,18 +114,24 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				}
 			}
 		}
-		//model.addConstr(X[0][1] == 1);
+		model.addConstr(X[0][1] == 1);
 
 		// To avoid that all variables can simply be put equal to zero, require all v-variables to be at least 1;
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
 			//model.addConstr(V[i] == 1);
 		}
-		model.addConstr(V[0] == 1);
-		//model.addConstr(V[1] == 1);
-		//model.addConstr(V[2] == 1);
-		//model.addConstr(V[3] == 1);
-		//model.addConstr(V[4] == 1);
+		/*model.addConstr(V[0] == 1);
+		model.addConstr(V[1] == 1);
+		model.addConstr(V[2] == 1);
+		model.addConstr(V[3] == 1);
+		model.addConstr(V[4] == 1);
+		model.addConstr(V[5] == 1);
+		model.addConstr(V[6] == 1);
+		model.addConstr(V[7] == 1);
+		model.addConstr(V[8] == 1);
+		model.addConstr(V[9] == 1);*/
+		//model.addConstr(V[10] == 1);
 
 
 		if (fixed_value == true) {

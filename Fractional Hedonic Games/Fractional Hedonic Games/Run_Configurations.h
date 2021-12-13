@@ -24,3 +24,6 @@ void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int
 void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector);
 void friends_and_enemies(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector);
 	// X[i][j] can only take values 1 or -1
+
+void alpha_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector, std::vector<double> aplha);
+	// 'alpha' contains the alpha-valuations for coalitions of size 1, 2, 3, ...

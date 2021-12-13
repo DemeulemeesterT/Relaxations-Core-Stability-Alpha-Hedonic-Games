@@ -1,7 +1,9 @@
 #include "Run_Configurations.h"
 
+// The difference for Modified Fractional Hedonic Games is that the utility of an agent
+// is only divided by the number of agents in the coalition, EXCLUDING HIMSELF
 
-void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector) {
+void alpha_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bool fixed_value, std::vector<double> c_vector, std::vector<double> alpha) {
 	for (int l = 0; l < n_vector.size(); l++) {
 		int n = n_vector[l];
 		// Size of the blocking coalition
@@ -21,17 +23,16 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		GRBEnv* env = NULL;
 
 		env = new GRBEnv();
-		env->set(GRB_StringParam_LogFile, "HedonicGames.log");
+		env->set(GRB_StringParam_LogFile, "HedonicGames_alpha.log");
 		GRBModel model = GRBModel(*env);
 		model.set(GRB_IntParam_PoolSolutions, 10); // Limit the number of solutions that will be stored.
-		model.set(GRB_DoubleParam_PoolGap, 0.0001); // Limit the search space by setting a gap for the worst possible solution that will be accepted
+		model.set(GRB_DoubleParam_MIPGap, 0.000001);
+		//model.set(GRB_DoubleParam_PoolGap, 0.0000001); // Limit the search space by setting a gap for the worst possible solution that will be accepted
 
 		// In case we want to maximize the improvement fraction
-		char name_alpha[13];
-		sprintf_s(name_alpha, "alpha");
-		GRBVar ALPHA = model.addVar(1.0, 2.0, 0.0, GRB_CONTINUOUS, name_alpha);
-		GRBLinExpr obj = ALPHA;
-		model.setObjective(obj, GRB_MAXIMIZE);
+		char name_beta[13];
+		sprintf_s(name_beta, "beta");
+		GRBVar beta = model.addVar(1.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_beta);
 
 		GRBVar** X = new GRBVar * [n];
 		for (int i = 0; i < n; i++) {
@@ -40,7 +41,7 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 				if (i != j) {
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
-					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_x);
+					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
 				}
 			}
 		}
@@ -80,8 +81,9 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 			Y[i] = model.addVar(0.0, 1.0, 0.0, GRB_BINARY, name_y);
 		}
 
-		// Big number M
-		int M = 1000;
+		// Big number M, should be upper bounded by the sum of the valuations (because of 2-size core stability)
+		// Fixing one of the valuations to 1, a quick guess is that none of the valuations is larger than 4
+		int M = 40*q;
 		int counter = 0;
 
 		//printf("\n\n\n\n\n\n\nATTENTION, NOT ALL CONSTRAINTS FOR THE SUBSETS ADDED \n\n\n\n\n\n\n");
@@ -92,10 +94,10 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 				GRBLinExpr con;
 				for (int l = 0; l < A[i].size(); l++) {
 					if (A[i][l] != A[i][k]) {
-						con += X[A[i][k]][A[i][l]];
+						con += alpha[A[i].size()-1] * X[A[i][k]][A[i][l]];
 					}
 				}
-				con -= A[i].size() * V[A[i][k]];
+				con -= V[A[i][k]];
 				model.addConstr(con <= M * (1 - Y[counter]));
 				con2 += Y[counter];
 				counter++;
@@ -114,14 +116,6 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		}
 		//model.addConstr(X[0][1] == 1);
 
-		/*for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (i != j) {
-					model.addQConstr(V[j] * X[i][j] == V[i] * X[j][i]);
-				}
-			}
-		}
-		*/
 		// To avoid that all variables can simply be put equal to zero, require all v-variables to be at least 1;
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
@@ -133,31 +127,11 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		model.addConstr(V[3] == 1);
 		model.addConstr(V[4] == 1);
 		model.addConstr(V[5] == 1);
-		model.addConstr(V[6] == 1);
+		/*model.addConstr(V[6] == 1);
 		model.addConstr(V[7] == 1);
 		model.addConstr(V[8] == 1);
-		//model.addConstr(V[9] == 1);
+		model.addConstr(V[9] == 1);*/
 		//model.addConstr(V[10] == 1);
-
-
-		//model.addConstr(V[2] == 3);
-
-		// Test whether there exists a solution in which no 'partitioning' of the X-variables holds for the constraints for n=5, q=3
-		/*model.addConstr(Y[20] + Y[35] <= 1);
-		model.addConstr(Y[21] + Y[44] <= 1);
-		model.addConstr(Y[22] + Y[47] <= 1);
-		model.addConstr(Y[23] + Y[32] <= 1);
-		model.addConstr(Y[24] + Y[41] <= 1);
-		model.addConstr(Y[25] + Y[48] <= 1);
-		model.addConstr(Y[26] + Y[29] <= 1);
-		model.addConstr(Y[27] + Y[38] <= 1);
-		model.addConstr(Y[28] + Y[49] <= 1);
-		model.addConstr(Y[30] + Y[42] <= 1);
-		model.addConstr(Y[31] + Y[45] <= 1);
-		model.addConstr(Y[33] + Y[39] <= 1);
-		model.addConstr(Y[34] + Y[46] <= 1);
-		model.addConstr(Y[36] + Y[40] <= 1);
-		model.addConstr(Y[37] + Y[43] <= 1);*/
 
 
 		if (fixed_value == true) {
@@ -166,10 +140,10 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 				GRBLinExpr con;
 				for (int k = 0; k < n; k++) {
 					if (i != k) {
-						con += X[i][k];
+						con += alpha[n-1] * X[i][k];
 					}
 				}
-				model.addConstr(con >= c * n * V[i]);
+				model.addConstr(con >= c * V[i]);
 				// NOTE: we want a strict inequality here, but GUROBI doesn't support it
 			}
 		}
@@ -179,22 +153,30 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 				GRBLinExpr con;
 				for (int k = 0; k < n; k++) {
 					if (i != k) {
-						con += X[i][k];
+						con += alpha[n-1]* X[i][k];
 					}
 				}
-				model.addQConstr(con >= ALPHA * n * V[i]);
+				model.addQConstr(con >= beta * V[i]);
 			}
+
+			GRBLinExpr obj = beta;
+			model.setObjective(obj, GRB_MAXIMIZE);
 
 			model.set(GRB_IntParam_NonConvex, 2);
 		}
 
-		model.write("HedonicGames.lp");
+		model.write("HedonicGames_alpha.lp");
 		model.optimize();
 
 		int status = model.get(GRB_IntAttr_Status);
 		if (status == 3) {
-			model.computeIIS();
-			model.write("model_IIS.ilp");
+			//model.computeIIS();
+			//model.write("model_IIS.ilp");
+		}
+		else if (status == 4) {
+			printf("\nInfeasible or unbounded...\n");
+			//model.computeIIS();
+			//model.write("model_IIS.ilp");
 		}
 		else {
 			// Get solution values
@@ -220,18 +202,18 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 
 			printf("V values:\n");
 			for (int i = 0; i < n; i++) {
-				printf("\tV[%i] = %.4f\n", i, V_val[i]);
+				printf("\tV[%i] = %.6f\n", i, V_val[i]);
 			}
 
 			printf("\n\n X values:\n");
 			for (int i = 0; i < n; i++) {
 				for (int j = i + 1; j < n; j++) {
-					printf("X[%i][%i] = %.2f\n", i, j, X_val[i][j]);
+					printf("X[%i][%i] = %.6f\n", i, j, X_val[i][j]);
 				}
 			}
 
 			if (fixed_value == false) {
-				printf("\nALPHA = %.6f\n\n", ALPHA.get(GRB_DoubleAttr_X));
+				printf("\nbeta = %.6f\n\n", beta.get(GRB_DoubleAttr_X));
 			}
 
 			/*printf("\n\n Y values:\n");

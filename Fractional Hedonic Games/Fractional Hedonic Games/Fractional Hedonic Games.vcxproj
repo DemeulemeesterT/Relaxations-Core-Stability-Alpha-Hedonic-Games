@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Additively Separable Hedonic Games.cpp" />
+    <ClCompile Include="alpha_hedonic_game.cpp" />
     <ClCompile Include="Find All Combinations.cpp" />
     <ClCompile Include="Fractional Hedonic Games.cpp" />
     <ClCompile Include="Friends and Enemies.cpp" />
