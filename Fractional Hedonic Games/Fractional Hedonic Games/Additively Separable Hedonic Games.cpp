@@ -42,6 +42,8 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
 					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
+					//X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_BINARY, name_x);
+
 				}
 			}
 		}
@@ -51,6 +53,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 			char name_v[13];
 			sprintf_s(name_v, "v_%i", i);
 			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_v);
+			//V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_v);
 		}
 
 		// Now we want to enforce that for each subset of size q or smaller, 
@@ -121,9 +124,13 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 			//model.addConstr(V[i] >= 0.01);
 			model.addConstr(V[i] == 1);
 		}
-		//model.addConstr(V[0] == 2);
+		for (int i = 2; i < n; i++) {
+			//model.addConstr(V[i] >= 0.01);
+			//model.addConstr(V[i] == 1);
+		}
+		//model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == 2);
-		//model.addConstr(V[2] == 1);
+		//model.addConstr(V[2] == 2);
 		//model.addConstr(V[3] == 1);
 		//model.addConstr(V[4] == 1);
 		//model.addConstr(V[5] == 1);
