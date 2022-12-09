@@ -50,7 +50,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 		for (int i = 0; i < n; i++) {
 			char name_v[13];
 			sprintf_s(name_v, "v_%i", i);
-			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_v);
+			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_v);
 		}
 
 		// Now we want to enforce that for each subset of size q or smaller, 
@@ -114,25 +114,84 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 				}
 			}
 		}
-		model.addConstr(X[0][1] == 1);
+		//model.addConstr(X[0][1] == 1);
 
 		// To avoid that all variables can simply be put equal to zero, require all v-variables to be at least 1;
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
-			//model.addConstr(V[i] == 1);
+			model.addConstr(V[i] == 1);
 		}
-		/*model.addConstr(V[0] == 1);
-		model.addConstr(V[1] == 1);
-		model.addConstr(V[2] == 1);
-		model.addConstr(V[3] == 1);
-		model.addConstr(V[4] == 1);
-		model.addConstr(V[5] == 1);
-		model.addConstr(V[6] == 1);
-		model.addConstr(V[7] == 1);
-		model.addConstr(V[8] == 1);
-		model.addConstr(V[9] == 1);*/
+		//model.addConstr(V[0] == 2);
+		//model.addConstr(V[1] == 2);
+		//model.addConstr(V[2] == 1);
+		//model.addConstr(V[3] == 1);
+		//model.addConstr(V[4] == 1);
+		//model.addConstr(V[5] == 1);
+		//model.addConstr(V[6] == 1);
+		//model.addConstr(V[7] == 1);
+		//model.addConstr(V[8] == 1);
+		//model.addConstr(V[9] == 1);
 		//model.addConstr(V[10] == 1);
-
+		//model.addConstr(V[11] == 1);
+		//model.addConstr(V[12] == 1);
+		
+		// Test a solution
+		/*model.addConstr(X[0][1] == 0.00);
+		model.addConstr(X[0][2] == 1.00);
+		model.addConstr(X[0][3] == 1.00);
+		model.addConstr(X[0][4] == 1.00);
+		model.addConstr(X[0][5] == 1.00);
+		model.addConstr(X[0][6] == 1.00);
+		model.addConstr(X[0][7] == 1.00);
+		model.addConstr(X[0][8] == 1.00);
+		model.addConstr(X[0][9] == 1.00);
+		model.addConstr(X[0][10] == 1.00);
+		model.addConstr(X[1][2] == 0.00);
+		model.addConstr(X[1][3] == 1.00);
+		model.addConstr(X[1][4] == 1.00);
+		model.addConstr(X[1][5] == 1.00);
+		model.addConstr(X[1][6] == 1.00);
+		model.addConstr(X[1][7] == 1.00);
+		model.addConstr(X[1][8] == 1.00);
+		model.addConstr(X[1][9] == 1.00);
+		model.addConstr(X[1][10] == 1.00);
+		model.addConstr(X[2][3] == 1.00);
+		model.addConstr(X[2][4] == 1.00);
+		model.addConstr(X[2][5] == 1.00);
+		model.addConstr(X[2][6] == 1.00);
+		model.addConstr(X[2][7] == 1.00);
+		model.addConstr(X[2][8] == 1.00);
+		model.addConstr(X[2][9] == 1.00);
+		model.addConstr(X[2][10] == 1.00);
+		model.addConstr(X[3][4] == 1.00);
+		model.addConstr(X[3][5] == 0.00);
+		model.addConstr(X[3][6] == 0.00);
+		model.addConstr(X[3][7] == 0.00);
+		model.addConstr(X[3][8] == 0.00);
+		model.addConstr(X[3][9] == 0.00);
+		model.addConstr(X[3][10] == 0.00);
+		model.addConstr(X[4][5] == 0.00);
+		model.addConstr(X[4][6] == 0.00);
+		model.addConstr(X[4][7] == 0.00);
+		model.addConstr(X[4][8] == 0.00);
+		model.addConstr(X[4][9] == 0.00);
+		model.addConstr(X[4][10] == 0.00);
+		model.addConstr(X[5][6] == 1.00);
+		model.addConstr(X[5][7] == 0.00);
+		model.addConstr(X[5][8] == 0.00);
+		model.addConstr(X[5][9] == 0.00);
+		model.addConstr(X[5][10] == 0.00);
+		model.addConstr(X[6][7] == 0.00);
+		model.addConstr(X[6][8] == 0.00);
+		model.addConstr(X[6][9] == 0.00);
+		model.addConstr(X[6][10] == 0.00);
+		model.addConstr(X[7][8] == 1.00);
+		model.addConstr(X[7][9] == 0.00);
+		model.addConstr(X[7][10] == 0.00);
+		model.addConstr(X[8][9] == 0.00);
+		model.addConstr(X[8][10] == 0.00);
+		model.addConstr(X[9][10] == 1.00);
+		*/
 
 		if (fixed_value == true) {
 			// Then also add the constraints that the new coalition is actually blocking
