@@ -14,4 +14,4 @@ In the code, the default setting is that $u_i(\mathcal{C}) = 1$ for all agents $
 
 To change $u_i(\mathcal{C})$, comment out the `model.addConstr(V[i] == 1);` line. To restrict the solution space, we recommend fixing `V[i]`, which represents $u_i(\mathcal{C})$, for at least one of the agents.
 
-To restrict to be binary, for example, replace the line `X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);` by `X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_BINARY, name_x);`. One could also impose alternative lower or upper bounds on the allowed utilities by modifying the first two values in the declaration of the `X`-variables.
+To restrict the utilities to be binary, for example, replace the line `X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);` by `X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_BINARY, name_x);`. One could also impose alternative lower or upper bounds on the allowed utilities by modifying the first two values in the declaration of the `X`-variables.
