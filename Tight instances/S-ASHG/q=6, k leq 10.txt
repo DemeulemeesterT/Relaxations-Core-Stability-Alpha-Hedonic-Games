@@ -1,0 +1,386 @@
+
+
+
+***************************************
+        n = 7    q=6     c=2.0000
+***************************************
+
+
+Academic license - for non-commercial use only - expires 2023-08-11
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+Optimize a model with 609 rows, 484 columns and 2744 nonzeros
+Model fingerprint: 0x41c6f9f8
+Variable types: 43 continuous, 441 integer (434 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 112 rows and 71 columns
+Presolve time: 0.01s
+Presolved: 497 rows, 413 columns, 2086 nonzeros
+Variable types: 21 continuous, 392 integer (392 binary)
+
+Root relaxation: objective 0.000000e+00, 182 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     0    0.00000    0   12          -    0.00000      -     -    0s
+     0     0    0.00000    0   19          -    0.00000      -     -    0s
+H    0     0                       0.0000000    0.00000  0.00%     -    0s
+
+Cutting planes:
+  Gomory: 9
+  Implied bound: 1
+  MIR: 28
+  RLT: 1
+
+Explored 1 nodes (538 simplex iterations) in 0.11 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 0
+
+Optimal solution found (tolerance 1.00e-06)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+V values:
+        V[0] = 2.000000
+        V[1] = 2.000000
+        V[2] = 2.000000
+        V[3] = 1.000000
+        V[4] = 1.000000
+        V[5] = 1.000000
+        V[6] = 1.000000
+
+
+ X values:
+X[0][1] = 0.000000
+X[0][2] = 2.000000
+X[0][3] = 0.000000
+X[0][4] = 1.000000
+X[0][5] = 1.000000
+X[0][6] = 0.000000
+X[1][2] = 2.000000
+X[1][3] = 2.000000
+X[1][4] = 0.000000
+X[1][5] = 0.000000
+X[1][6] = 0.000000
+X[2][3] = 0.000000
+X[2][4] = 0.000000
+X[2][5] = 0.000000
+X[2][6] = 0.000000
+X[3][4] = 0.000000
+X[3][5] = 0.000000
+X[3][6] = 0.000000
+X[4][5] = 0.000000
+X[4][6] = 1.000000
+X[5][6] = 1.000000
+Number of X-values equal to 0: 14
+Number of X-values equal to 1: 4
+Number of X-values equal to 2: 3
+
+
+
+***************************************
+        n = 8    q=6     c=2.0000
+***************************************
+
+
+Academic license - for non-commercial use only - expires 2023-08-11
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+Optimize a model with 1262 rows, 1017 columns and 6232 nonzeros
+Model fingerprint: 0xd8a84e7e
+Variable types: 57 continuous, 960 integer (952 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 148 rows and 93 columns
+Presolve time: 0.02s
+Presolved: 1114 rows, 924 columns, 4984 nonzeros
+Variable types: 28 continuous, 896 integer (896 binary)
+
+Root relaxation: objective 0.000000e+00, 337 iterations, 0.01 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     0    0.00000    0   37          -    0.00000      -     -    0s
+H    0     0                       0.0000000    0.00000  0.00%     -    0s
+     0     0    0.00000    0   37    0.00000    0.00000  0.00%     -    0s
+
+Cutting planes:
+  Gomory: 2
+  Implied bound: 1
+  MIR: 1
+  RLT: 1
+
+Explored 1 nodes (1181 simplex iterations) in 0.23 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 0
+
+Optimal solution found (tolerance 1.00e-06)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+V values:
+        V[0] = 2.000000
+        V[1] = 2.000000
+        V[2] = 2.000000
+        V[3] = 1.000000
+        V[4] = 1.000000
+        V[5] = 1.000000
+        V[6] = 1.000000
+        V[7] = 1.000000
+
+
+ X values:
+X[0][1] = 0.000000
+X[0][2] = 0.000000
+X[0][3] = 1.000000
+X[0][4] = 1.000000
+X[0][5] = 1.000000
+X[0][6] = 0.000000
+X[0][7] = 1.000000
+X[1][2] = 2.000000
+X[1][3] = 1.000000
+X[1][4] = 0.000000
+X[1][5] = 1.000000
+X[1][6] = 0.000000
+X[1][7] = 0.000000
+X[2][3] = 0.000000
+X[2][4] = 0.000000
+X[2][5] = 0.000000
+X[2][6] = 2.000000
+X[2][7] = 0.000000
+X[3][4] = 0.000000
+X[3][5] = 0.000000
+X[3][6] = 0.000000
+X[3][7] = 0.000000
+X[4][5] = 0.000000
+X[4][6] = 0.000000
+X[4][7] = 1.000000
+X[5][6] = 0.000000
+X[5][7] = 0.000000
+X[6][7] = 0.000000
+Number of X-values equal to 0: 19
+Number of X-values equal to 1: 7
+Number of X-values equal to 2: 2
+
+
+
+***************************************
+        n = 9    q=6     c=2.0000
+***************************************
+
+
+Academic license - for non-commercial use only - expires 2023-08-11
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+Optimize a model with 2508 rows, 2044 columns and 13248 nonzeros
+Model fingerprint: 0xbca052ec
+Variable types: 73 continuous, 1971 integer (1962 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 189 rows and 118 columns
+Presolve time: 0.03s
+Presolved: 2319 rows, 1926 columns, 10908 nonzeros
+Variable types: 36 continuous, 1890 integer (1890 binary)
+
+Root relaxation: objective 0.000000e+00, 722 iterations, 0.03 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   90          -    0.00000      -     -    0s
+     0     0    0.00000    0   75          -    0.00000      -     -    0s
+     0     0    0.00000    0   64          -    0.00000      -     -    0s
+H    0     0                       0.0000000    0.00000  0.00%     -    0s
+     0     0    0.00000    0  120    0.00000    0.00000  0.00%     -    0s
+
+Cutting planes:
+  Gomory: 22
+  Implied bound: 1
+  MIR: 66
+  StrongCG: 1
+  RLT: 20
+  Relax-and-lift: 2
+
+Explored 1 nodes (3886 simplex iterations) in 0.67 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 0
+
+Optimal solution found (tolerance 1.00e-06)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+V values:
+        V[0] = 2.000000
+        V[1] = 2.000000
+        V[2] = 2.000000
+        V[3] = 1.000000
+        V[4] = 1.000000
+        V[5] = 1.000000
+        V[6] = 1.000000
+        V[7] = 1.000000
+        V[8] = 1.000000
+
+
+ X values:
+X[0][1] = 0.000000
+X[0][2] = 1.000000
+X[0][3] = 0.000000
+X[0][4] = 0.000000
+X[0][5] = 1.000000
+X[0][6] = 1.000000
+X[0][7] = 0.000000
+X[0][8] = 1.000000
+X[1][2] = 0.000000
+X[1][3] = 1.000000
+X[1][4] = 1.000000
+X[1][5] = 1.000000
+X[1][6] = 0.000000
+X[1][7] = 1.000000
+X[1][8] = 0.000000
+X[2][3] = 1.000000
+X[2][4] = 1.000000
+X[2][5] = 0.000000
+X[2][6] = 1.000000
+X[2][7] = 0.000000
+X[2][8] = 0.000000
+X[3][4] = 0.000000
+X[3][5] = 0.000000
+X[3][6] = 0.000000
+X[3][7] = 0.000000
+X[3][8] = 0.000000
+X[4][5] = 0.000000
+X[4][6] = 0.000000
+X[4][7] = 0.000000
+X[4][8] = 0.000000
+X[5][6] = 0.000000
+X[5][7] = 0.000000
+X[5][8] = 0.000000
+X[6][7] = 0.000000
+X[6][8] = 0.000000
+X[7][8] = 1.000000
+Number of X-values equal to 0: 24
+Number of X-values equal to 1: 12
+Number of X-values equal to 2: 0
+
+
+
+***************************************
+        n = 10   q=6     c=2.0000
+***************************************
+
+
+Academic license - for non-commercial use only - expires 2023-08-11
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+Optimize a model with 4757 rows, 3911 columns and 26390 nonzeros
+Model fingerprint: 0x158627ca
+Variable types: 91 continuous, 3820 integer (3810 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+01]
+Presolve removed 235 rows and 146 columns
+Presolve time: 0.06s
+Presolved: 4522 rows, 3765 columns, 22110 nonzeros
+Variable types: 45 continuous, 3720 integer (3720 binary)
+
+Root relaxation: objective 0.000000e+00, 1430 iterations, 0.10 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0  161          -    0.00000      -     -    0s
+     0     0    0.00000    0  179          -    0.00000      -     -    1s
+     0     0    0.00000    0  160          -    0.00000      -     -    1s
+     0     0    0.00000    0  135          -    0.00000      -     -    1s
+     0     0    0.00000    0  118          -    0.00000      -     -    1s
+H    0     0                       0.0000000    0.00000  0.00%     -    2s
+     0     0    0.00000    0  132    0.00000    0.00000  0.00%     -    2s
+
+Cutting planes:
+  Gomory: 2
+  MIR: 48
+  RLT: 33
+  Relax-and-lift: 2
+
+Explored 1 nodes (8490 simplex iterations) in 2.05 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 0
+
+Optimal solution found (tolerance 1.00e-06)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+V values:
+        V[0] = 2.000000
+        V[1] = 2.000000
+        V[2] = 2.000000
+        V[3] = 1.000000
+        V[4] = 1.000000
+        V[5] = 1.000000
+        V[6] = 1.000000
+        V[7] = 1.000000
+        V[8] = 1.000000
+        V[9] = 1.000000
+
+
+ X values:
+X[0][1] = 1.000000
+X[0][2] = 0.000000
+X[0][3] = 1.000000
+X[0][4] = 1.000000
+X[0][5] = 0.000000
+X[0][6] = 0.000000
+X[0][7] = 1.000000
+X[0][8] = 0.000000
+X[0][9] = 0.000000
+X[1][2] = 1.000000
+X[1][3] = 0.000000
+X[1][4] = 0.000000
+X[1][5] = 0.000000
+X[1][6] = 1.000000
+X[1][7] = 1.000000
+X[1][8] = 0.000000
+X[1][9] = 0.000000
+X[2][3] = 0.000000
+X[2][4] = 0.000000
+X[2][5] = 1.000000
+X[2][6] = 0.000000
+X[2][7] = 0.000000
+X[2][8] = 1.000000
+X[2][9] = 1.000000
+X[3][4] = 0.000000
+X[3][5] = 0.000000
+X[3][6] = 0.000000
+X[3][7] = 0.000000
+X[3][8] = 0.000000
+X[3][9] = 1.000000
+X[4][5] = 0.000000
+X[4][6] = 0.000000
+X[4][7] = 0.000000
+X[4][8] = 1.000000
+X[4][9] = 0.000000
+X[5][6] = 1.000000
+X[5][7] = 0.000000
+X[5][8] = 0.000000
+X[5][9] = 0.000000
+X[6][7] = 0.000000
+X[6][8] = 0.000000
+X[6][9] = 0.000000
+X[7][8] = 0.000000
+X[7][9] = 0.000000
+X[8][9] = 0.000000
+Number of X-values equal to 0: 32
+Number of X-values equal to 1: 13
+Number of X-values equal to 2: 0
