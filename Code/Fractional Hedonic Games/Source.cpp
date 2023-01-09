@@ -7,16 +7,16 @@ int main()
 {
 	// Below you can fill in the data for which you want to generate an instance, or prove infeasibility:
 		// If you fill the vectors with multiple values, then the instances are solved iteratively
-	std::vector<int> n_vector{13,14}; // Number of agents in blocking coalition
+	std::vector<int> n_vector{4,5,6,7}; // Number of agents in blocking coalition
 	
-	std::vector<int> q_vector{ 12,12 };	// Values for q-size core stability
+	std::vector<int> q_vector{3,3,3,3};	// Values for q-size core stability
 	
 	bool fixed_value = true; // 'true' means checking feasibility for c-improvement core stability
 		// Default, put on 'true'. 
 		// If 'false', the solver will solve a quadratic program to find the maximal value of k for which a k-improving blocking coaltion exists,
 			// But this will require more time.
 
-	std::vector<double> c_vector{2,2}; //values for c-improvement core stability 
+	std::vector<double> c_vector{1.25, 1.2, 1.3333, 1.2857}; //values for c-improvement core stability 
 		// (Called k-improvement core stability in the paper)
 	
 	// Fill in the values of alpha in the symmetric alpha-hedonic game									
@@ -28,8 +28,8 @@ int main()
 
 	// Uncomment the type of game you want to examine:
 	
-	//fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
-	modified_fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
+	fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
+	//modified_fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
 	//additively_separable_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
 	//alpha_hedonic_game(n_vector, q_vector, fixed_value, c_vector, alpha);
 
