@@ -25,8 +25,12 @@ int main()
 	for (int i = 0; i < 14; i++) {
 		alpha.push_back((double)1 / ((i + 1) * (i + 1)));
 	}
+
+	// Uncomment the type of game you want to examine:
+	
 	//fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
-	additively_separable_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
+	modified_fractional_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
+	//additively_separable_hedonic_game(n_vector, q_vector, fixed_value, c_vector);
 	//alpha_hedonic_game(n_vector, q_vector, fixed_value, c_vector, alpha);
 
 

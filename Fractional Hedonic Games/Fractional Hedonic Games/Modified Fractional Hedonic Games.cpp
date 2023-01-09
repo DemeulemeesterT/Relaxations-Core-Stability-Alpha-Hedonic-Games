@@ -119,9 +119,9 @@ void modified_fractional_hedonic_game(std::vector<int> n_vector, std::vector<int
 		// To avoid that all variables can simply be put equal to zero, require all v-variables to be at least 1;
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
-			//model.addConstr(V[i] == 1);
+			model.addConstr(V[i] == 1);
 		}
-		model.addConstr(V[0] == 100);
+		//model.addConstr(V[0] == 100);
 
 
 		if (fixed_value == true) {

@@ -52,7 +52,7 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 		for (int i = 0; i < n; i++) {
 			char name_v[13];
 			sprintf_s(name_v, "v_%i", i);
-			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_v);
+			V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_v);
 			//V[i] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_v);
 		}
 
@@ -123,10 +123,6 @@ void additively_separable_hedonic_game(std::vector<int> n_vector, std::vector<in
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
 			model.addConstr(V[i] == 1);
-		}
-		for (int i = 2; i < n; i++) {
-			//model.addConstr(V[i] >= 0.01);
-			//model.addConstr(V[i] == 1);
 		}
 		//model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == 2);

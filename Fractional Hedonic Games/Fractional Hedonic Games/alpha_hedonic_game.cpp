@@ -41,7 +41,7 @@ void alpha_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bo
 				if (i != j) {
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
-					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_INTEGER, name_x);
+					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
 				}
 			}
 		}
@@ -119,9 +119,9 @@ void alpha_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vector, bo
 		// To avoid that all variables can simply be put equal to zero, require all v-variables to be at least 1;
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
-			//model.addConstr(V[i] == 1);
+			model.addConstr(V[i] == 1);
 		}
-		model.addConstr(V[0] == 1);
+		//model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == 1);
 		//model.addConstr(V[2] == 1);
 		//model.addConstr(V[3] == 1);
