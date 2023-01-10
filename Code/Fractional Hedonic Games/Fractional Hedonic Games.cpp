@@ -146,8 +146,8 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		model.addConstr(V[2] == 1);
 		model.addConstr(V[3] == 1);
 		model.addConstr(V[4] == 1);
-		model.addConstr(V[5] == 2);
-		model.addConstr(V[6] == 2);
+		model.addConstr(V[5] == 1);
+		model.addConstr(V[6] == 1);
 		model.addConstr(V[7] == 2);
 		model.addConstr(V[8] == 2);
 		//model.addConstr(V[9] == 0);
