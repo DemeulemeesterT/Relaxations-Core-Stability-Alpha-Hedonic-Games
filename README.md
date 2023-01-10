@@ -14,7 +14,7 @@ Most parameters for the code can be modified from the `Source.cpp` file. In that
 * `c_vector` contains the values of $c$-improvement core stability for which you want to generate an instance (denoted by $k$ in the paper).
 * `n_vector` contains the sizes of the blocking coalition (denoted by $m$ in the paper).
 
-You can either use the function `alpha_hedonic_game()` and specify the $\alpha$-vector,or use the already existing functions for symmetric fraction hedonic games, symmetric modified fractional hedonic games, and symmetric additively separable hedonic games already exists.
+You can either use the function `alpha_hedonic_game()` and specify the $\alpha$-vector,or use the already existing functions for symmetric fraction hedonic games, symmetric modified fractional hedonic games, and symmetric additively separable hedonic games already exists. Careful, when specifying a type of hedonic game, the value of `M` in the constraints should be chosen with care: too high values will lead to worse LP-relaxations, and hence longer computation times, while too small values will output incorrect results.
 
 In the code, the default setting is that $u_i(\mathcal{C}) = 1$ for all agents $i$ in the blocking coalition, and that the utilities of the agents, which are denoted by the `X`-variables in the code, are real numbers greater than zero. However, both assumptions can be changed in the `alpha_hedonic_game.cpp` file (or the correct file for alternative subclasses of symmetric hedonic games).
 
