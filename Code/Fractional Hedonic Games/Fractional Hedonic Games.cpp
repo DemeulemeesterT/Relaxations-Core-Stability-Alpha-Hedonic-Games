@@ -139,17 +139,17 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 			// By setting all V[i]'s equal to integer values, the examples also tend to become more understandable
 		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
-			model.addConstr(V[i] == 1);
+			//model.addConstr(V[i] == 1);
 		}
-		//model.addConstr(V[0] == 1);
-		//model.addConstr(V[1] == (double)5/6);
-		//model.addConstr(V[2] == (double)5/6);
-		//model.addConstr(V[3] == (double)5/6);
-		//model.addConstr(V[4] == (double)5/6);
-		//model.addConstr(V[5] == (double)5/6);
-		//model.addConstr(V[6] == 0);
-		//model.addConstr(V[7] == 0);
-		//model.addConstr(V[8] == 0);
+		model.addConstr(V[0] == 1);
+		model.addConstr(V[1] == 1);
+		model.addConstr(V[2] == 1);
+		model.addConstr(V[3] == 1);
+		model.addConstr(V[4] == 1);
+		model.addConstr(V[5] == 2);
+		model.addConstr(V[6] == 2);
+		model.addConstr(V[7] == 2);
+		model.addConstr(V[8] == 2);
 		//model.addConstr(V[9] == 0);
 		//model.addConstr(V[10] == 1);
 
