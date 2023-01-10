@@ -7,7 +7,7 @@ int main()
 {
 	// Below you can fill in the data for which you want to generate an instance, or prove infeasibility:
 		// If you fill the vectors with multiple values, then the instances are solved iteratively
-	std::vector<int> n_vector{9}; // Number of agents in blocking coalition
+	std::vector<int> n_vector{10}; // Number of agents in blocking coalition
 	
 	std::vector<int> q_vector{5};	// Values for q-size core stability
 	
@@ -16,7 +16,7 @@ int main()
 		// If 'false', the solver will solve a quadratic program to find the maximal value of k for which a k-improving blocking coaltion exists,
 			// But this will require more time.
 
-	std::vector<double> c_vector{1.15}; //values for c-improvement core stability 
+	std::vector<double> c_vector{1.1817}; //values for c-improvement core stability 
 		// (Called k-improvement core stability in the paper)
 	
 	// Fill in the values of alpha in the symmetric alpha-hedonic game									
