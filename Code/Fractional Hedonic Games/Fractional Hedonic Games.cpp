@@ -138,11 +138,11 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		// To avoid that all variables can simply be put equal to zero, require at least one v-variable to be equal to 1;
 			// Note that other choices are also possible, and can help to reduce the time required to find a solution.
 			// By setting all V[i]'s equal to integer values, the examples also tend to become more understandable
-		for (int i = 0; i < n-5; i++) {
+		for (int i = 0; i < n; i++) {
 			//model.addConstr(V[i] >= 0.01);
-			model.addConstr(V[i] == 1);
+			//model.addConstr(V[i] == (double) 5/6);
 		};
-		//model.addConstr(V[0] == 1);
+		model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == (double)5/6);
 		//model.addConstr(V[6] == 0);
 		//model.addConstr(V[7] == 0);

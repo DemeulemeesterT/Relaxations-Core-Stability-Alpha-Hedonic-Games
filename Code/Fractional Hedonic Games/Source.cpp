@@ -16,7 +16,7 @@ int main()
 		// If 'false', the solver will solve a quadratic program to find the maximal value of k for which a k-improving blocking coaltion exists,
 			// But this will require more time.
 
-	std::vector<double> c_vector{1.165}; //values for c-improvement core stability 
+	std::vector<double> c_vector{1.157}; //values for c-improvement core stability 
 		// (Called k-improvement core stability in the paper)
 	
 	// Fill in the values of alpha in the symmetric alpha-hedonic game									
