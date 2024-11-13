@@ -42,6 +42,7 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 					char name_x[13];
 					sprintf_s(name_x, "x_%i_%i", i, j);
 					X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_CONTINUOUS, name_x);
+					//X[i][j] = model.addVar(0.0, GRB_INFINITY, 0.0, GRB_BINARY, name_x);
 				}
 			}
 		}
@@ -137,16 +138,12 @@ void fractional_hedonic_game(std::vector<int> n_vector, std::vector<int> q_vecto
 		// To avoid that all variables can simply be put equal to zero, require at least one v-variable to be equal to 1;
 			// Note that other choices are also possible, and can help to reduce the time required to find a solution.
 			// By setting all V[i]'s equal to integer values, the examples also tend to become more understandable
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n-5; i++) {
 			//model.addConstr(V[i] >= 0.01);
 			model.addConstr(V[i] == 1);
-		}
+		};
 		//model.addConstr(V[0] == 1);
 		//model.addConstr(V[1] == (double)5/6);
-		//model.addConstr(V[2] == (double)5/6);
-		//model.addConstr(V[3] == (double)5/6);
-		//model.addConstr(V[4] == (double)5/6);
-		//model.addConstr(V[5] == (double)5/6);
 		//model.addConstr(V[6] == 0);
 		//model.addConstr(V[7] == 0);
 		//model.addConstr(V[8] == 0);
